@@ -1,0 +1,7 @@
+{
+  "desc": "复古贴色小商城",
+  "rules": [{
+  "action": "allow",
+  "page": "*"
+  }]
+}

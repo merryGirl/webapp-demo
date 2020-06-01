@@ -1,0 +1,42 @@
+.wrapper {
+    padding-top: 410rpx;
+    box-sizing: border-box;
+}
+.banner-img {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 300rpx;
+}
+.search {
+    position: absolute;
+    top: 300rpx;
+    height: 100rpx;
+    width: 100%;
+    border: 1px solid grey;
+    background-color: grey;
+}
+.pic-wrapper {
+    background-color: #EADEE0;
+    height: 100%;
+}
+
+.left-category {
+    float: left;
+    width: 150rpx;
+    border-right: 1px solid #E86E80;
+}
+.left-category .cate-name {
+    font-size: 28rpx;
+    text-align: center;
+    line-height: 50rpx;
+    border-left: 10rpx solid transparent;
+}
+.cate-name.active {
+    border-left: 10rpx solid red;
+}
+.right-pic {
+    float: right;
+    width: 600rpx;
+    height: 100%;
+}
