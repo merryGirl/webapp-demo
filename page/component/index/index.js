@@ -7,7 +7,20 @@ Page({
       other: '其它'
     },
     isScroll: false,
-    toView: 'normal' // 当前作品分类
+    toView: 'normal', // 当前作品分类
+    picData: [{
+      id: 'normal',
+      pics: ['图片1', '图片2']
+    },{
+      id: 'scenery',
+      pics: ['scenery', '图片scenery']
+    },{
+      id: 'cute',
+      pics: ['cute', '图片cute']
+    },{
+      id: 'other',
+      pics: ['other', 'other图片']
+    }]
   },
   onReady() {
     

@@ -21,7 +21,11 @@
             scroll-into-view="{{toView}}"
             scroll-with-animation="true"
             class="right-pic">
-            滚动的数据
+            <block wx:for="{{picData}}" wx:key="index">
+                <view id="{{item.id}}" class="pic-block">
+                    {{item.pics}}
+                </view>
+            </block>
         </scroll-view>
     </view>
 </view>
