@@ -42,6 +42,12 @@
     overflow: hidden;
 }
 .pic-block {
-    border: 1px solid grey;
     height: 500rpx;
+    padding: 20rpx 10rpx;
+    overflow-y: auto;
+}
+.pic-block image {
+    width: 180rpx;
+    height: 220rpx;
+    margin: 0 10rpx;
 }

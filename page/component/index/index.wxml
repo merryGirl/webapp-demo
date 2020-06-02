@@ -1,32 +1,41 @@
 <view class="wrapper">
-    <image class="banner-img" src="../../../image/banner.png"></image>
-    <view class="search">
-        
-    </view>
-    <view class="pic-wrapper">
-        <view class="left-category">
-            <view
-                wx:for="{{categories}}"
-                wx:key="index"
-                wx:for-item="cateValue"
-                wx:for-index="cateKey"
-                data-name="{{cateKey}}"
-                bindtap="switchTab"
-                class="cate-name {{toView===cateKey ? 'active' : ''}}">
-                {{cateValue}}
-            </view>
-        </view>
-        <scroll-view
-            scroll-y="{{isScroll}}"
-            scroll-into-view="{{toView}}"
-            scroll-with-animation="true"
-            class="right-pic">
-            <block wx:for="{{picData}}" wx:key="index">
-                <view id="{{item.id}}" class="pic-block">
-                    {{item.pics}}
-                </view>
-            </block>
-        </scroll-view>
-    </view>
+	<image class="banner-img" src="../../../image/banner.png"></image>
+	<view class="search">
+			
+	</view>
+	<view class="pic-wrapper">
+		<view class="left-category">
+			<view
+				wx:for="{{categories}}"
+				wx:key="index"
+				wx:for-item="cateValue"
+				wx:for-index="cateKey"
+				data-name="{{cateKey}}"
+				bindtap="switchTab"
+				class="cate-name {{toView===cateKey ? 'active' : ''}}">
+				{{cateValue}}
+			</view>
+		</view>
+		<scroll-view
+			scroll-y="{{isScroll}}"
+			scroll-into-view="{{toView}}"
+			scroll-with-animation="true"
+			class="right-pic">
+			<block wx:for="{{picData}}" wx:key="index">
+				<view id="{{item.id}}" class="pic-block">
+					<navigator
+						wx:for="{{item.pics}}"
+						wx:key="index"
+						wx:for-item="picItem"
+						url="../pic-detail/pic-detail?id={{picItem.id}}"
+						hover-class="navigator-hover"
+						class="img-info">
+							<image src="{{picItem.url}}"></image>
+							{{picItem.name}}
+					</navigator>
+				</view>
+			</block>
+		</scroll-view>
+	</view>
 </view>
   

@@ -1,8 +1,10 @@
 {
   "pages": [
     "page/component/index/index",
+    "page/component/draw/draw",
     "page/component/user/user",
-    "page/component/sign/sign"
+    "page/component/sign/sign",
+    "page/component/pic-detail/pic-detail"
   ],
   "window": {
     "navigationBarTextStyle": "white",

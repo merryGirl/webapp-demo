@@ -2,13 +2,13 @@
     min-height: 100%;
     flex: 1;
     background-color: #FBF9FE;
-    font-size: 16px;
     font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
     overflow: hidden;
 }
 page {
-  background-color: #fbf9fe;
-  height: 100%;
+    background-color: #fbf9fe;
+    height: 100%;
+    font-size: 28rpx;
 }
 .wrapper {
     position: relative;
