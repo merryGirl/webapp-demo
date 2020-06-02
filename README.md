@@ -32,4 +32,5 @@
 
 ## 参考
 
-* 日历组件： `https://github.com/treadpit/wx_calendar`
+* [日历组件](https://github.com/treadpit/wx_calendar)
+* [接口请求封装](https://juejin.im/post/5b050e5651882542816aabfa)

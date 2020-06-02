@@ -17,6 +17,7 @@
 			</view>
 		</view>
 		<scroll-view
+			wx:if="{{picData && picData.length}}"
 			scroll-y="{{isScroll}}"
 			scroll-into-view="{{toView}}"
 			scroll-with-animation="true"
@@ -36,6 +37,7 @@
 				</view>
 			</block>
 		</scroll-view>
+		<text wx:else>暂无数据{{picData}}</text>
 	</view>
 </view>
   
