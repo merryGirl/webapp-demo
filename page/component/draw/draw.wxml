@@ -1,11 +1,52 @@
 <view class="draw-wrapper">
-	绘画中心
+	<!-- 贴图区 -->
+	<block wx:if="{{imgLocations.length}}">
+		<view
+			wx:for="{{imgLocations}}"
+			class="free-img"
+			style="z-index:{{item.zIndex}}">
+			<view class="img-box selected" style="left:{{item.left}}px;top:{{item.top}}px;width:{{item.width}}px;height:{{item.height}}px;">
+				<view
+				class="free-box"
+				data-id="{{item.id}}"
+				bindtouchstart="imgStart"
+				bindtouchmove="imgMove"
+				bindtouchend="imgMove"
+				style="transform:rotate({{item.rotate}}deg);">
+					<image class="img" src="{{item.url}}" mode="widthFix"></image>
+				</view>
+	
+				<!-- 旋转 s -->
+				<image
+					src="../../../images/btn-rot.png"
+					class="btn rotate"
+					data-id="{{item.id}}"
+					catchtouchstart="rotateStart"
+					catchtouchmove="rotateMove"
+					catchtouchend="rotateEnd">
+				</image>
+	
+				<!-- 旋转 e -->
+				<image
+					src="../../../images/btn-scale.png"
+					class="btn scale"
+					data-id="{{item.id}}"
+					catchtouchstart="scaleStart"
+					catchtouchmove="scaleMove"
+					catchtouchend="scaleMove">
+				</image>
+			</view>
+		</view>
+	</block>
+
+	<!-- 贴图选区 -->
 	<view wx:v-if="{{sourceImgs && sourceImgs.length}}" class="img-parts">
 		<view class="img-tabs">
 			<view
 				wx:for="{{sourceTabs}}"
 				wx:for-index="tabKey"
 				wx:for-item="tabVal"
+				wx:key="index"
 				class="source-tab {{activeSource===tabKey ? 'active-tab' : ''}}"
 				data-name="{{tabKey}}"
 				bindtap="selectImgType">
@@ -21,7 +62,12 @@
 					wx:for-item="imgItem"
 					class="img-item"
 					style="width:{{item.width+20}}rpx;height:{{item.height+60}}rpx;">
-					<image src="{{imgItem.src}}" style="width:{{item.width}}rpx;height:{{item.height}}rpx;"/>
+					<image
+						src="{{imgItem.src}}"
+						style="width:{{item.width}}rpx;height:{{item.height}}rpx;"
+						data-img="{{imgItem}}"
+						data-item="{{item}}"
+						bindtap="selecedImg"/>
 					<text>{{imgItem.name}}</text>
 				</view>
 			</view>
