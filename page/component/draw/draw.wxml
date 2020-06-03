@@ -1,4 +1,31 @@
-<view>
-   绘画中心
+<view class="draw-wrapper">
+	绘画中心
+	<view wx:v-if="{{sourceImgs && sourceImgs.length}}" class="img-parts">
+		<view class="img-tabs">
+			<view
+				wx:for="{{sourceTabs}}"
+				wx:for-index="tabKey"
+				wx:for-item="tabVal"
+				class="source-tab {{activeSource===tabKey ? 'active-tab' : ''}}"
+				data-name="{{tabKey}}"
+				bindtap="selectImgType">
+				{{tabVal}}
+			</view>
+		</view>
+		<!-- 贴纸 -->
+		<block wx:for="{{sourceImgs}}" wx:key="index">
+			<view wx:if="{{item.name===activeSource}}" class="imgs-wrapper">
+				<view
+					wx:for="{{item.imgs}}"
+					wx:key="imgIdx"
+					wx:for-item="imgItem"
+					class="img-item"
+					style="width:{{item.width+20}}rpx;height:{{item.height+60}}rpx;">
+					<image src="{{imgItem.src}}" style="width:{{item.width}}rpx;height:{{item.height}}rpx;"/>
+					<text>{{imgItem.name}}</text>
+				</view>
+			</view>
+		</block>
+	</view>
 </view>
   

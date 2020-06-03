@@ -23,6 +23,13 @@
 > 其余
 - [ ] 公共弹框组件的开发
 
+> 图片贴图分区
+* 脸型
+* 发型
+* 头饰
+* 包包
+* 背景
+* logo水印，文案diy
 
 ## 运行
 
@@ -34,3 +41,4 @@
 
 * [日历组件](https://github.com/treadpit/wx_calendar)
 * [接口请求封装](https://juejin.im/post/5b050e5651882542816aabfa)
+* [图片拖拽放大](https://developers.weixin.qq.com/community/develop/article/doc/00080ca563c118fc7ca9b64a051c13?highline=%E5%9B%BE%E7%89%87%E6%8C%89%E4%BD%8F%E4%B8%80%E8%A7%92%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E7%BC%A9%E6%94%BE%E3%80%81%E6%97%8B%E8%BD%AC%E3%80%81%E6%8B%96%E6%8B%BD)

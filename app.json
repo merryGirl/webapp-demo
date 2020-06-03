@@ -1,7 +1,7 @@
 {
   "pages": [
-    "page/component/index/index",
     "page/component/draw/draw",
+    "page/component/index/index",
     "page/component/user/user",
     "page/component/sign/sign",
     "page/component/pic-detail/pic-detail"
@@ -24,6 +24,12 @@
         "iconPath": "image/22.png",
         "selectedIconPath": "image/21.png",
         "text": "画展"
+      },
+      {
+        "pagePath": "page/component/draw/draw",
+        "iconPath": "image/22.png",
+        "selectedIconPath": "image/21.png",
+        "text": "贴画板"
       },
       {
         "pagePath": "page/component/sign/sign",

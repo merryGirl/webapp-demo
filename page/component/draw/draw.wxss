@@ -1,0 +1,41 @@
+.draw-wrapper {
+    position: relative;
+    width: 750rpx;
+    height: 100%;
+}
+.img-parts {
+    position: absolute;
+    bottom: 0;
+    width: 750rpx;
+    height: 260rpx;
+}
+.img-tabs {
+    position: absolute;
+    top: 0;
+}
+.img-tabs .source-tab {
+    width: 90rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    text-align: center;
+    float: left;
+    border: 1px solid #ccc;
+    border-bottom: none;
+}
+.img-tabs .active-tab {
+    border: 2px solid#E24E42;
+    border-bottom: none;
+}
+.imgs-wrapper {
+    margin-top: 61rpx;
+    display: flex;
+    padding: 20rpx;
+}
+.imgs-wrapper .img-item {
+    display: inline-flex;
+    flex-direction: column;
+}
+.imgs-wrapper .img-item text {
+    color: #ccc;
+    font-size: 24rpx;
+}

@@ -41,7 +41,7 @@ class Request {
 const request = new Request({
   baseURL: 'https://www.fastmock.site/mock/198c7c6e1e9a42799ccc859dab720686/draw',
   withBaseURL: true,
-  successCode: ['200']
+  successCode: ['200', 200]
 })
 
 module.exports = request
