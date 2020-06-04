@@ -1,3 +1,4 @@
 {
-    "navigationBarTitleText": "贴画板"
+    "navigationBarTitleText": "贴画板",
+    "enablePullDownRefresh": false
 }

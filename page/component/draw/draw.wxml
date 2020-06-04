@@ -3,39 +3,38 @@
 	<block wx:if="{{imgLocations.length}}">
 		<view
 			wx:for="{{imgLocations}}"
-			class="free-img"
-			style="z-index:{{item.zIndex}}">
-			<view class="img-box selected" style="left:{{item.left}}px;top:{{item.top}}px;width:{{item.width}}px;height:{{item.height}}px;">
-				<view
-				class="free-box"
+			wx:key="index"
+			class="stickers-block selected"
+			style="left:{{item.left}}px;top:{{item.top}}px;width:{{item.width}}px;height:{{item.height}}px;z-index:{{item.zIndex}}">
+			<view
+				class="sticker-img-box"
 				data-id="{{item.id}}"
 				bindtouchstart="imgStart"
 				bindtouchmove="imgMove"
 				bindtouchend="imgMove"
 				style="transform:rotate({{item.rotate}}deg);">
-					<image class="img" src="{{item.url}}" mode="widthFix"></image>
-				</view>
-	
-				<!-- 旋转 s -->
-				<image
-					src="../../../images/btn-rot.png"
-					class="btn rotate"
-					data-id="{{item.id}}"
-					catchtouchstart="rotateStart"
-					catchtouchmove="rotateMove"
-					catchtouchend="rotateEnd">
-				</image>
-	
-				<!-- 旋转 e -->
-				<image
-					src="../../../images/btn-scale.png"
-					class="btn scale"
-					data-id="{{item.id}}"
-					catchtouchstart="scaleStart"
-					catchtouchmove="scaleMove"
-					catchtouchend="scaleMove">
-				</image>
+				<image class="sticker-img-item" src="{{item.url}}" mode="widthFix"></image>
 			</view>
+
+			<!-- 旋转 s -->
+			<image
+				src="../../../image/btn-rot.png"
+				class="sticker-btn rotate"
+				data-id="{{item.id}}"
+				catchtouchstart="rotateStart"
+				catchtouchmove="rotateMove"
+				catchtouchend="rotateMove">
+			</image>
+
+			<!-- 旋转 e -->
+			<image
+				src="../../../image/btn-scale.png"
+				class="sticker-btn scale"
+				data-id="{{item.id}}"
+				catchtouchstart="scaleStart"
+				catchtouchmove="scaleMove"
+				catchtouchend="scaleMove">
+			</image>
 		</view>
 	</block>
 
@@ -60,11 +59,9 @@
 					wx:for="{{item.imgs}}"
 					wx:key="imgIdx"
 					wx:for-item="imgItem"
-					class="img-item"
-					style="width:{{item.width+20}}rpx;height:{{item.height+60}}rpx;">
+					class="img-item">
 					<image
 						src="{{imgItem.src}}"
-						style="width:{{item.width}}rpx;height:{{item.height}}rpx;"
 						data-img="{{imgItem}}"
 						data-item="{{item}}"
 						bindtap="selecedImg"/>

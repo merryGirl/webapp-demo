@@ -3,6 +3,31 @@
     width: 750rpx;
     height: 100%;
 }
+/* 绘图区样式 */
+.stickers-block {
+    position: absolute;
+}
+.stickers-block .sticker-img-box {
+    width: 100%;
+}
+.stickers-block .sticker-img-item {
+    width: 100%;
+    height: 100%;
+}
+.stickers-block .sticker-btn {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    bottom: -14px;
+}
+.sticker-btn.rotate {
+    left: -14px;
+}
+.sticker-btn.scale {
+    right: -14px;
+}
+
+/* 选贴图样式 */
 .img-parts {
     position: absolute;
     bottom: 0;
@@ -34,6 +59,13 @@
 .imgs-wrapper .img-item {
     display: inline-flex;
     flex-direction: column;
+    width: 60rpx;
+    height: 100rpx;
+}
+.imgs-wrapper .img-item image {
+    width: 40rpx;
+    height: 60rpx;
+
 }
 .imgs-wrapper .img-item text {
     color: #ccc;
