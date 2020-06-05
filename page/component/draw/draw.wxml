@@ -16,7 +16,6 @@
 				<image class="sticker-img-item" src="{{item.url}}" mode="widthFix"></image>
 			</view>
 
-			<!-- 旋转 s -->
 			<image
 				src="../../../image/btn-rot.png"
 				class="sticker-btn rotate"
@@ -26,7 +25,6 @@
 				catchtouchend="rotateMove">
 			</image>
 
-			<!-- 旋转 e -->
 			<image
 				src="../../../image/btn-scale.png"
 				class="sticker-btn scale"
@@ -67,8 +65,11 @@
 						bindtap="selecedImg"/>
 					<text>{{imgItem.name}}</text>
 				</view>
-			</view>
+		</view>
 		</block>
 	</view>
+
+	<view class="select-album" bindtap="selectAblum">
+		打开相册
+	</view>
 </view>
-  

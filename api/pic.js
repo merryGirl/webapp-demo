@@ -1,4 +1,5 @@
 import requestUtil from '../utils/request'
+import fakeD from './fakeData'
 
 export default {
   /**
@@ -7,10 +8,16 @@ export default {
    * @returns
    */
   getPicList(keyWord) {
+    return new Promise((res, rej) => {
+      res(fakeD.getPicList)
+    })
     return requestUtil.get(`/piclist?key=${keyWord}`)
   },
   
   getAllImgsOfSource() {
+    return new Promise((res, rej) => {
+      res(fakeD.getAllImgsOfSource)
+    })
     return requestUtil.get('/source/img/all')
   }
 }

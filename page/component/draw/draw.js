@@ -36,9 +36,10 @@ Page({
     ], // 图片定位
     activeImgId: null, // 当前激活图片id
     windowWidth: null,
-    windowHeight: null
+    windowHeight: null,
   },
-
+  
+  locImgLen: 0, // 本地加载的图片个数
   recordLocations: [], // 图片移动位置记录
 
   onLoad() {
@@ -77,24 +78,27 @@ Page({
   },
 
   // 选中贴图，位置数据初始化
-  selecedImg(e) {
-    const {img, item} = e.target.dataset
-    const leftVal = (this.data.windowWidth-item.width)/2
-    const topVal = (this.data.windowHeight-260-item.height)/2
+  selecedImg(e, locPer, locWidth, locHeiht, locId, locSrc) {
+    const {img, item} = e ? e.target.dataset : {img: null, item: null}
+    const imgW = item && item.width || locWidth
+    const imgH = item && item.height || locHeiht
+    console.log('获取到数据',locPer, locWidth, locHeiht, locId, locSrc )
+    const leftVal = (this.data.windowWidth-imgW)/2
+    const topVal = (this.data.windowHeight-260-imgH)/2
     const loc = {
-      id: img.id,
+      id: img && img.id || locId,
       left: leftVal,
       top: topVal,
-      width: item.width,
-      height: item.height,
+      width: imgW,
+      height: imgH,
       rotate: 0, // 旋转角度
-      url: img.src, //img链接
+      url: img && img.src || locSrc, //img链接
       zIndex: 0
     }
     const recordLoc = {
-      id: img.id,
-      w: item.width,  //img宽度
-      h: item.height,   //img高度
+      id: img && img.id || locId,
+      w: imgW,  //img宽度
+      h: imgH,   //img高度
       lastLeft: leftVal, //imgx轴的值
       lastTop: topVal, //imgy轴的值
       rotate: 0,  //img旋转角度
@@ -103,7 +107,7 @@ Page({
       scx: 0,
       r: 0,
       rox: 0,
-      per: 1,  //img宽高比
+      per: e ? 1 : locPer,  //img宽高比
     }
 
     this.setData({
@@ -125,7 +129,6 @@ Page({
 
   // 触发img框，记录位置
   imgStart(e) {
-    
     const touch = e.touches[0] || e.changedTouches[0]
     const activeIdx = this.getActiveIdx( this.data.imgLocations, e.currentTarget.dataset.id)
     this.recordLocations[activeIdx].sx = touch.pageX
@@ -134,7 +137,6 @@ Page({
   },
 
   imgMove(e) {
-    
     const activeIdx = this.getActiveIdx( this.data.imgLocations, e.currentTarget.dataset.id)
     let touch = e.touches[0] || e.changedTouches[0]
     let pageX = touch.pageX
@@ -167,16 +169,14 @@ Page({
     })
   },
 
+  // 记录旋转初始位置 
   rotateStart(e) {
-    
     const activeIdx = this.getActiveIdx( this.data.imgLocations, e.currentTarget.dataset.id)
     const touch = e.touches[0] || e.changedTouches[0]
     this.recordLocations[activeIdx].rox = touch.pageX
   },
 
-  // 开始旋转
   rotateMove(e) {
-    
     const activeIdx = this.getActiveIdx( this.data.imgLocations, e.currentTarget.dataset.id)
     const touch = e.touches[0] || e.changedTouches[0]
     const pageX = touch.pageX
@@ -190,6 +190,7 @@ Page({
     })
   },
 
+  // 缩放初始位置
   scaleStart(e) {
     const activeIdx = this.getActiveIdx( this.data.imgLocations, e.currentTarget.dataset.id)
     const touch = e.touches[0] || e.changedTouches[0]
@@ -198,7 +199,6 @@ Page({
   },
 
   scaleMove(e) {
-    
     const activeIdx = this.getActiveIdx( this.data.imgLocations, e.currentTarget.dataset.id)
     const touch = e.touches[0] || e.changedTouches[0]
     const pageX = touch.pageX
@@ -212,7 +212,6 @@ Page({
     }
 
     let height = width / this.recordLocations[activeIdx].per
-    console.log('缩放中的宽高', width, height)
     this.recordLocations[activeIdx].scx = pageX
     this.recordLocations[activeIdx].w = width
     this.recordLocations[activeIdx].h = height
@@ -226,11 +225,39 @@ Page({
     })
   },
 
-  onPageScroll:function(e){
+  onPageScroll(e){
     if(e.scrollTop<0){
       wx.pageScrollTo({
         scrollTop: 0
       })
     }
-  }
+  },
+
+  // 选择相册图片
+  selectAblum() {
+    const _that = this
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['compressed'],
+      sourceType: ['album'],
+      success (res) {
+        _that.getLocImg(res.tempFiles[0].path)
+      }
+    })
+  },
+
+  // 读取本地图片数据
+  getLocImg(src) {
+    wx.getImageInfo({
+      src: src,
+      success: res => {
+        const locPer = res.width / res.height
+        const locWidth = 50
+        const locHeiht = locPer * locWidth
+        this.locImgLen++
+
+        this.selecedImg(null, locPer, locWidth, locHeiht, `locImg${this.locImgLen}`, src)
+      }
+    })
+  },
 })
