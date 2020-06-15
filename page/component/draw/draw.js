@@ -41,6 +41,7 @@ Page({
   
   locImgLen: 0, // 本地加载的图片个数
   recordLocations: [], // 图片移动位置记录
+  lastZIndex: 1, // 上一个图片Z-index值
 
   onLoad() {
     this.getImgsReq()
@@ -93,7 +94,7 @@ Page({
       height: imgH,
       rotate: 0, // 旋转角度
       url: img && img.src || locSrc, //img链接
-      zIndex: 0
+      zIndex: 1
     }
     const recordLoc = {
       id: img && img.id || locId,
@@ -117,11 +118,19 @@ Page({
   },
 
   // 获取当前激活的数据下标
-  getActiveIdx(originArr, activeId) {
+  getActiveIdx(originArr, activeId, isChangeIdx) {
     let activeIdx = null
     originArr.length && originArr.filter((item, idx) => {
       if (item.id === activeId) {
         activeIdx = idx
+        
+        if (isChangeIdx) {
+          const imgIdx = 'imgLocations['+idx+'].zIndex'
+          this.setData({
+            [imgIdx]: this.lastZIndex++
+          })
+          this.lastZIndex++;
+        }
       }
     })
     return activeIdx
@@ -130,14 +139,14 @@ Page({
   // 触发img框，记录位置
   imgStart(e) {
     const touch = e.touches[0] || e.changedTouches[0]
-    const activeIdx = this.getActiveIdx( this.data.imgLocations, e.currentTarget.dataset.id)
+    const activeIdx = this.getActiveIdx( this.data.imgLocations, e.currentTarget.dataset.id, true)
     this.recordLocations[activeIdx].sx = touch.pageX
     this.recordLocations[activeIdx].sy = touch.pageY
     console.log('首次点击', touch.pageX, touch.pageY)
   },
 
   imgMove(e) {
-    const activeIdx = this.getActiveIdx( this.data.imgLocations, e.currentTarget.dataset.id)
+    const activeIdx = this.getActiveIdx( this.data.imgLocations, e.currentTarget.dataset.id )
     let touch = e.touches[0] || e.changedTouches[0]
     let pageX = touch.pageX
     let pageY = touch.pageY
@@ -171,13 +180,13 @@ Page({
 
   // 记录旋转初始位置 
   rotateStart(e) {
-    const activeIdx = this.getActiveIdx( this.data.imgLocations, e.currentTarget.dataset.id)
+    const activeIdx = this.getActiveIdx( this.data.imgLocations, e.currentTarget.dataset.id, true)
     const touch = e.touches[0] || e.changedTouches[0]
     this.recordLocations[activeIdx].rox = touch.pageX
   },
 
   rotateMove(e) {
-    const activeIdx = this.getActiveIdx( this.data.imgLocations, e.currentTarget.dataset.id)
+    const activeIdx = this.getActiveIdx( this.data.imgLocations, e.currentTarget.dataset.id )
     const touch = e.touches[0] || e.changedTouches[0]
     const pageX = touch.pageX
     const rotate = pageX - this.recordLocations[activeIdx].rox + this.recordLocations[activeIdx].r
@@ -192,14 +201,14 @@ Page({
 
   // 缩放初始位置
   scaleStart(e) {
-    const activeIdx = this.getActiveIdx( this.data.imgLocations, e.currentTarget.dataset.id)
+    const activeIdx = this.getActiveIdx( this.data.imgLocations, e.currentTarget.dataset.id, true)
     const touch = e.touches[0] || e.changedTouches[0]
     this.recordLocations[activeIdx].scx = touch.pageX
     console.log('缩放开始', touch.pageX)
   },
 
   scaleMove(e) {
-    const activeIdx = this.getActiveIdx( this.data.imgLocations, e.currentTarget.dataset.id)
+    const activeIdx = this.getActiveIdx( this.data.imgLocations, e.currentTarget.dataset.id )
     const touch = e.touches[0] || e.changedTouches[0]
     const pageX = touch.pageX
     const pageY = touch.pageY
@@ -260,4 +269,9 @@ Page({
       }
     })
   },
+
+  // 保存截图
+  savaImg() {
+
+  }
 })

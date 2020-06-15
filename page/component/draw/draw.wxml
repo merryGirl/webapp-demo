@@ -72,4 +72,8 @@
 	<view class="select-album" bindtap="selectAblum">
 		打开相册
 	</view>
+	<view class="save-img" bindtap="savaImg">
+		保存截图
+	</view>
+	  
 </view>
